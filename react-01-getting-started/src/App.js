@@ -1,5 +1,5 @@
 import React from "react";
-import ExpenseItem from "./components/ExpenseItem";
+import Expenses from "./components/Expenses";
 
 function App() {
   const expenses = [
@@ -32,30 +32,7 @@ function App() {
   return (
     <div>
       <h2>My Expense App</h2>
-      <ExpenseItem 
-        id={expenses[0].id}
-        date={expenses[0].date}
-        title={expenses[0].title}
-        price={expenses[0].amount}
-      />
-      <ExpenseItem 
-        id={expenses[1].id}
-        date={expenses[1].date}
-        title={expenses[1].title}
-        price={expenses[1].amount}
-      />
-      <ExpenseItem 
-        id={expenses[2].id}
-        date={expenses[2].date}
-        title={expenses[2].title}
-        price={expenses[2].amount}
-      />
-      <ExpenseItem 
-        id={expenses[3].id}
-        date={expenses[3].date}
-        title={expenses[3].title}
-        price={expenses[3].amount}
-      />
+      <Expenses expenses={expenses} />
     </div>
   );
 }

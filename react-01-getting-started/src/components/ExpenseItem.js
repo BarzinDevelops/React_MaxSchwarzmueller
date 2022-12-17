@@ -1,9 +1,9 @@
 import React from 'react';
-import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
+import './ExpenseItem.css';
 
 const ExpenseItem = (props) =>{
-
+    // console.log(`props in ExpenseItem.js: `, props)
 
     return(
         <div className='expense-item'>
