@@ -5,7 +5,7 @@ import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
 
 const Expenses = (props) => {
-    const [filteredExpenseState, setFilteredExpenseState] = useState('');
+    const [filteredExpenseState, setFilteredExpenseState] = useState('2019');
 
     const filterExpenseHandler = (filteredExpense) => {       
         setFilteredExpenseState(filteredExpense);
@@ -14,7 +14,7 @@ const Expenses = (props) => {
     return (
         <div>
             <Card className='expenses'>
-                <ExpensesFilter onFilterExpense={filterExpenseHandler}/>
+                <ExpensesFilter defaultChosenYear={filteredExpenseState} onFilterExpense={filterExpenseHandler}/>
                 { console.log('In Expenses.js => ', filteredExpenseState) }
                 <ExpenseItem 
                     id={props.expenses[0].id}
