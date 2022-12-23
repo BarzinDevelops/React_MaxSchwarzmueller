@@ -2,10 +2,18 @@ import React from 'react';
 import './ExpenseDate.css'
 
 const ExpenseDate = (props) =>{
-    const day = props.date.toLocaleString('nl-NL', {day: '2-digit'});
-    const month = props.date.toLocaleString('nl-NL', {month: 'long'});
+    let day = props.date.toLocaleString('nl-NL', {day: '2-digit'});
+    let month = props.date.toLocaleString('nl-NL', {month: 'long'});
     const year =props.date.getFullYear();
+    // console.log('month tolocalstring version =>', month)
+    // console.log('month in props.date verson =>', props.date)
+    const testDate = new Date(props.date.getFullYear(),props.date.getMonth()-1,props.date.getDate())
+    day = testDate.toLocaleString('nl-NL', {day: '2-digit'});
+    month = testDate.toLocaleString('nl-NL', {month: 'long'});
+    // year = testDate.toLocaleString('nl-NL', {day: '2-digit'});
 
+    console.log('testDate version =>', testDate)
+    
     return(
         <div className='expense-date'>
             <div className='expense-date__day'>{day}</div>
