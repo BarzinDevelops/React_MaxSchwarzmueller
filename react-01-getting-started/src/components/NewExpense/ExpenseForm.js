@@ -8,47 +8,20 @@ const ExpenseForm = (props) =>{
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
 
-    // storing all states in one object approach:
-    // const [userInput, setUserInput] = useState({
-    //     enteredTitle: '',
-    //     enteredAmount: '',
-    //     enteredDate: '',
-    // })
-
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
-        
-        //this is other approach: which sets an property of multi state object (userInput):
-        // setUserInput((prevState)=>{
-        //     return { ...prevState, enteredTitle: event.target.value }
-        // });
     };
+
     const amounthangeHandler = (event) => {
         setEnteredAmount(event.target.value);
-
-        //this is other approach: which sets an property of multi state object (userInput):
-        // setUserInput((prevState)=>{
-        //     return { ...prevState, enteredAmount: event.target.value, }
-        // });
     };
   
     const dateChangeHandler = (event) => {
         setEnteredDate(event.target.value);
-
-        //this is other approach: which sets an property of multi state object (userInput):
-        // setUserInput((prevState)=>{
-        //     return { ...prevState, enteredDate: event.target.value, }
-        // });
     };
    
     const submitHandler = (event) => {
-        event.preventDefault();  // prevents a page load (because that is a default behaviour of submitting forms).
-        // console.log(userInput);
-        // console.log(`
-        // enteredTitle => ${enteredTitle}
-        // enteredAmount => ${enteredAmount}
-        // enteredDate => ${enteredDate}
-        // `);
+        event.preventDefault();  // prevents a page load (because that is a default behaviour of submitting forms)
 
         // you have to create an new object of all the states you have, for later use:
         const expenseData = {
@@ -61,7 +34,6 @@ const ExpenseForm = (props) =>{
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
-
     }
 
     return(
