@@ -4,8 +4,6 @@ import './ExpenseForm.css';
 
 const ExpenseForm = (props) =>{
 
-    const [formContent, setFormContent] = useState('');
-
     // seperating each state of the input elements:
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
@@ -38,9 +36,6 @@ const ExpenseForm = (props) =>{
         setEnteredAmount('');
         setEnteredDate('');
     }
-
-
-        // console.log(defaultContent)
 
     return(
         <form onSubmit={submitHandler}>
