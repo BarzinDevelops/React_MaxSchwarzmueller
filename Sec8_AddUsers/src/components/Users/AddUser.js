@@ -20,16 +20,16 @@ const AddUser = props => {
     }
     setEnteredUsername("");
     setEnteredAge("");
-
-
-    console.log(enteredUsername, enteredAge);
   };
+
   const usernameChangeHandler = (event) => {
     setEnteredUsername(event.target.value);
   };
+  
   const userAgeChangeHandler = (event) => {
     setEnteredAge(event.target.value);
   };
+
   return (
     <Card className={classes.input}>
       <form onSubmit={addUserHandler}>
