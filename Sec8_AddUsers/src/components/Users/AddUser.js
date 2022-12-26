@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -16,16 +16,16 @@ const AddUser = (props) => {
 
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
-        title : "ERROR: No Inputs!",
-        message : "Please provide input for Username and Age."
-        });
+        title: "ERROR: No Inputs!",
+        message: "Please provide input for Username and Age.",
+      });
       return;
     }
     if (+enteredAge < 1) {
-        setError({
-          title : "ERROR: Invalid Age!",
-          message : `Please provide a valid Age (number > 0 )`
-        });
+      setError({
+        title: "ERROR: Invalid Age!",
+        message: `Please provide a valid Age (number > 0 )`,
+      });
       return;
     }
     props.onAddUser(enteredUsername, enteredAge);
@@ -41,13 +41,19 @@ const AddUser = (props) => {
     setEnteredAge(event.target.value);
   };
 
-  const errorHandler = () =>{
+  const errorHandler = () => {
     setError(null);
-  }
+  };
 
   return (
-    <div>
-      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>}
+    <Fragment>
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">User Name:</label>
@@ -67,7 +73,7 @@ const AddUser = (props) => {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </div>
+    </Fragment>
   );
 };
 
