@@ -16,10 +16,13 @@ const Login = (props) => {
       setFormIsValid(
         enteredEmail.includes("@") && enteredPassword.trim().length > 6
       );
-    }, 500);
+      console.log('new identifier was:', identifier);
+      console.log('setFormIsValid just ran in setTimeout() !!');
+    }, 1000);
 
     return () => {
       clearTimeout(identifier);
+      console.log('Timeout has just cleard => previous identifier was: ', identifier);
     };
   }, [enteredEmail, enteredPassword]);
 
