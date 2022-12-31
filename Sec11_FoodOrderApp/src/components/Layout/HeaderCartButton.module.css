@@ -4,12 +4,13 @@
     border: none;
     background-color: #4d1601;
     color: white;
-    padding: 0.75rem 3rem;
+    padding: 0.75rem 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-radius: 25px;
     font-weight: bold;
+    margin-left: 20px;
   }
   
   .button:hover,
@@ -18,11 +19,17 @@
   }
   
   .icon {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: 1.15rem;
+    height: 1.15rem;
     margin-right: 0.5rem;
   }
+
+  .title{
+    font-size: 0.8rem;
+  }
   
+
+
   .badge {
     background-color: #b94517;
     padding: 0.25rem 1rem;
@@ -58,3 +65,20 @@
     }
   }
   
+
+
+  @media (min-width: 650px) {
+    .button {
+      padding: 0.75rem 3rem;
+      display: flex;
+      justify-content: space-around;
+    }
+    .title{
+      font-size: 1rem;
+    }
+    .icon {
+      width: 1.45rem;
+      height: 1.45rem;
+      margin-right: 0.5rem;
+    }
+  }
