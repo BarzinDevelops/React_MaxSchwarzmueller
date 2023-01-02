@@ -6,8 +6,10 @@ import Movie from './components/Movie';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchMoviesHandler = async () =>{
+    setIsLoading(true);
     const response = await fetch('https://swapi.dev/api/films');
     const moviesData = await response.json();
   
@@ -20,8 +22,7 @@ function App() {
       }
     })
     setMovies(transformedMovies);
-
-    // Getting same data but using .then() method approach:
+    setIsLoading(false);
     // fetch('https://swapi.dev/api/films')
     //   .then(response=> {
     //     const moviesData = response.json();
@@ -38,7 +39,7 @@ function App() {
     //     })
     //     setMovies(transformedMovies);
     //   });
-  }
+  };
 
   return (
     <React.Fragment>
@@ -46,7 +47,9 @@ function App() {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
+        {!isLoading && movies.length === 0 && <p>🤦‍♀️ Found no movies 🤦‍♂️</p>}
+        {isLoading && <p>Loading ... 🙃🙏please be patient 🙃🙏</p>}
       </section>
     </React.Fragment>
   );
