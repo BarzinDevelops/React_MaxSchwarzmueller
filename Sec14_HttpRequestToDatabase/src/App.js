@@ -8,16 +8,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const statusCodes = [
-    {code: 200 , message: 'The request succeeded.' },
-    {code: 404 , message: 'The server cannot find the requested resource.' }
-  ];
+  
  
   const fetchMoviesHandler = useCallback(async () =>{
+    const statusCodes = [
+      {code: 200 , message: 'The request succeeded.' },
+      {code: 404 , message: 'The server cannot find the requested resource.' }
+    ];
     setIsLoading(true);
-    setError(true);
+   
     try {
-      const response = await fetch('https://swapi.dev/api/films');
+      const response = await fetch('https://swapi.dev/api/films/', { mode: 'cors'});
       if(!response.ok){
         let errorMsg = '';
         for(const status of statusCodes){
@@ -26,12 +27,10 @@ function App() {
           } 
           else  errorMsg = "something went wrong!";
         }
-        errorMsg = "something went wrong!";
         throw new Error(errorMsg);
       }
 
       const moviesData = await response.json();
-  
       const transformedMovies = moviesData.results.map( movie => {
         return {
           id: movie.episode_id,
@@ -46,27 +45,23 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-    // fetch('https://swapi.dev/api/films')
-    //   .then(response=> {
-    //     const moviesData = response.json();
-    //     return moviesData;
-    //   })
-    //   .then( moviesData => {
-    //     const transformedMovies = moviesData.results.map( movie => {
-    //       return {
-    //         id: movie.episode_id,
-    //         title: movie.title,
-    //         releaseDate: movie.release_date,
-    //         openingText: movie.opening_crawl
-    //       }
-    //     })
-    //     setMovies(transformedMovies);
-    //   });
   }, []);
 
   useEffect(()=>{
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
+
+  let content = <p>🤦‍♀️ Found no movies 🤦‍♂️</p> ;
+
+  if(movies.length > 0){
+    content =  <MoviesList movies={movies} />;
+  }
+  if(error){
+    content = <p>{error}</p>;
+  }
+  if(isLoading){
+    content = <p>Loading ... 🙃🙏 please be patient 🙃🙏</p>;
+  }
 
   return (
     <React.Fragment>
@@ -74,10 +69,7 @@ function App() {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && !error && <p>🤦‍♀️ Found no movies 🤦‍♂️</p>}
-        {!isLoading && error && <p>{error}</p>}
-        {isLoading && <p>Loading ... 🙃🙏 please be patient 🙃🙏</p>}
+        { content }
       </section>
     </React.Fragment>
   );
