@@ -14,7 +14,6 @@ import UserProfile from './components/UserProfile';
 function App() {
   const isLoggedIn = useSelector(state => state.auth.isAuthenticated)
 
-  console.log('in App.js -> isLoggedIn: ', isLoggedIn);
   return (
     <Fragment>
       <Header/>
